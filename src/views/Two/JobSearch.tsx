@@ -10,8 +10,9 @@ export const JobSearch = ({ icon, onSearch, click }: JobSearch) => {
   const [search, setSearch] = useState('');
 
   const handleInputSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
-    onSearch(event.target.value)
+    const valueSearch = event.target.value;
+    setSearch(valueSearch);
+    onSearch(valueSearch)
   };
   return (
     <div className="flex">
