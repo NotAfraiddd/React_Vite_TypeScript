@@ -1,37 +1,30 @@
-import { useEffect, useState } from 'react'
-interface ReviewProps {
-  rate: number
-  click: (item: number) => void
-}
-export const Review = ({ rate, click }: ReviewProps) => {
-  const [review, setReview] = useState(0)
+import { InterfaceReview } from './Interface'
 
-  useEffect(() => {
-    setReview(rate)
-  }, [rate])
-
-  const clickItem = (item: number) => {
-    if (review !== item) {
-      setReview(item)
-      click(item)
-    } else {
-      setReview(item - 1)
-      click(item - 1)
-    }
-  }
+export const DetailReview = ({
+  nickName,
+  email,
+  rate,
+  recommend,
+  reviewTitle,
+  publicEmail,
+  productReview,
+  click
+}: InterfaceReview) => {
   return (
-    <div className='flex'>
-      {[1, 2, 3, 4, 5].map((item) => (
-        <span
-          key={item}
-          onClick={() => clickItem(item)}
-          className={`text-yellow-300 ${item <= review ? 'text-yellow-300' : 'text-gray-400'}`}
-        >
+    <div className='flex flex-col border px-5 py-4 cursor-pointer hover:opacity-80' onClick={click}>
+      <div className='flex items-end'>
+        <span className='font-semibold text-lg'>{nickName}</span>
+        {publicEmail && <span>({email})</span>}
+      </div>
+      <span className='font-semibold text-2xl'>{productReview}</span>
+      <div className='flex items-center'>
+        <span>Rate {rate}</span>
+        {rate != 0 && (
           <svg
             viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className={`h-10 w-10 ${item <= review ? 'fill-yellow-300' : 'fill-none'}`}
+            className='h-5 w-5 fill-yellow-300 text-yellow-300'
           >
             <g id='SVGRepo_bgCarrier'></g>
             <g id='SVGRepo_tracerCarrier'></g>
@@ -42,8 +35,18 @@ export const Review = ({ rate, click }: ReviewProps) => {
               ></path>
             </g>
           </svg>
-        </span>
-      ))}
+        )}
+      </div>
+      <span>{reviewTitle}</span>
+      <div className='flex'>
+        <span className='break-words'>Would you recommend this product to a friend?</span>
+        {recommend == 'true' && <span className='font-semibold ml-1'>Yes</span>}
+        {recommend == 'false' && <span className='font-semibold ml-1'>No</span>}
+      </div>
+      <div className='flex justify-center gap-10 w-full'>
+        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-yellow-500 text-white'>Edit</button>
+        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-red-500 text-white'>Delete</button>
+      </div>
     </div>
   )
 }
