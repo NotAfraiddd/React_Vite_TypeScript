@@ -6,7 +6,8 @@ export interface InterfaceReview {
   reviewTitle: string
   publicEmail: boolean
   productReview: string
-  click?: () => void
+  editReview?: () => void
+  deleteReview?: () => void
 }
 
 export const defaultReview: InterfaceReview = {

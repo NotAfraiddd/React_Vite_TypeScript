@@ -8,10 +8,11 @@ export const DetailReview = ({
   reviewTitle,
   publicEmail,
   productReview,
-  click
+  editReview,
+  deleteReview
 }: InterfaceReview) => {
   return (
-    <div className='flex flex-col border px-5 py-4 cursor-pointer hover:opacity-80' onClick={click}>
+    <div className='flex flex-col border px-5 py-4 hover:opacity-80'>
       <div className='flex items-end'>
         <span className='font-semibold text-lg'>{nickName}</span>
         {publicEmail && <span>({email})</span>}
@@ -44,8 +45,12 @@ export const DetailReview = ({
         {recommend == 'false' && <span className='font-semibold ml-1'>No</span>}
       </div>
       <div className='flex justify-center gap-10 w-full'>
-        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-yellow-500 text-white'>Edit</button>
-        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-red-500 text-white'>Delete</button>
+        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-yellow-500 text-white' onClick={editReview}>
+          Edit
+        </button>
+        <button className='w-20 py-2 px-3 mt-5 hover:opacity-70 bg-red-500 text-white' onClick={deleteReview}>
+          Delete
+        </button>
       </div>
     </div>
   )

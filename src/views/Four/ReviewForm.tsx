@@ -14,7 +14,7 @@ export const ReviewForm = () => {
   const handleSubmit = () => {
     console.log('abc')
   }
-  const handleClick = (data: InterfaceReview) => {
+  const handleEdit = (data: InterfaceReview) => {
     setReview(data)
   }
   const handleChangeInput = (data: string) => {
@@ -110,7 +110,7 @@ export const ReviewForm = () => {
             rate={item.rate}
             recommend={item.recommend}
             reviewTitle={item.reviewTitle}
-            click={() => handleClick(item)}
+            editReview={() => handleEdit(item)}
           />
         ))}
       </div>
