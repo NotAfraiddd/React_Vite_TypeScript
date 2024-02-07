@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { ListReview } from './SampleData'
 import { DetailReview } from './DetailReview'
 import { Input } from './InputForm'
@@ -15,8 +15,6 @@ export const ReviewForm = () => {
     console.log('abc')
   }
   const handleClick = (data: InterfaceReview) => {
-    console.log(data)
-
     setReview(data)
   }
   const handleChangeInput = (data: string) => {
@@ -25,6 +23,13 @@ export const ReviewForm = () => {
   const handleChecked = (data: string) => {
     console.log(data)
   }
+  const handleChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      publicEmail: event.target.checked
+    }))
+  }
+
   return (
     <div className='flex flex-col space-y-10 w-4/5 mt-5 items-center'>
       <div className='w-[42rem] rounded-3xl space-y-7 bg-white p-16'>
@@ -76,7 +81,13 @@ export const ReviewForm = () => {
           </div>
         </div>
         <div className='space-x-3'>
-          <input type='checkbox' className='accent-gray-500 scale-150' checked={review.publicEmail} />
+          <input
+            id='checkbox-accept'
+            type='checkbox'
+            className='accent-gray-500 scale-150'
+            checked={review.publicEmail}
+            onChange={(event) => handleChangeCheckbox(event)}
+          />
           <label htmlFor='checkbox-accept'>
             <span>I accept public email</span>
           </label>
