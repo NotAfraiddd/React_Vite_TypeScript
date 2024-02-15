@@ -12,16 +12,41 @@ export const ReviewForm = () => {
     console.log(data)
   }
   const handleSubmit = () => {
-    console.log('abc')
+    console.log(review)
   }
   const handleEdit = (data: InterfaceReview) => {
     setReview(data)
-  }
-  const handleChangeInput = (data: string) => {
     console.log(data)
+  }
+  const handleChangeInputEmail = (data: string) => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      email: data
+    }))
+  }
+  const handleChangeInputNickName = (data: string) => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      nickName: data
+    }))
+  }
+  const handleChangeInputProductReview = (data: string) => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      productReview: data
+    }))
+  }
+  const handleChangeInputReviewTitle = (data: string) => {
+    setReview((prevReview) => ({
+      ...prevReview,
+      reviewTitle: data
+    }))
   }
   const handleChecked = (data: string) => {
-    console.log(data)
+    setReview((prevReview) => ({
+      ...prevReview,
+      recommend: data
+    }))
   }
   const handleChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
     setReview((prevReview) => ({
@@ -40,7 +65,7 @@ export const ReviewForm = () => {
         </div>
         <Input
           value={review.reviewTitle}
-          onChange={handleChangeInput}
+          onChange={handleChangeInputReviewTitle}
           placeholder='Example: Easy to use'
           title='Review title'
           type='text'
@@ -55,7 +80,7 @@ export const ReviewForm = () => {
         />
         <Input
           value={review.productReview}
-          onChange={handleChangeInput}
+          onChange={handleChangeInputProductReview}
           placeholder='Example: Easy to use Example: Easy to useExample: Easy to useExample: Easy to use'
           title='Product review'
           type='textarea'
@@ -64,7 +89,7 @@ export const ReviewForm = () => {
           <div className='grow'>
             <Input
               value={review.nickName}
-              onChange={handleChangeInput}
+              onChange={handleChangeInputNickName}
               placeholder='Example: Chi bao'
               title='Nickname'
               type='text'
@@ -73,7 +98,7 @@ export const ReviewForm = () => {
           <div>
             <Input
               value={review.email}
-              onChange={handleChangeInput}
+              onChange={handleChangeInputEmail}
               placeholder='Example: your@gmail.com'
               title='Email address'
               type='text'
@@ -100,9 +125,9 @@ export const ReviewForm = () => {
         </button>
       </div>
       <div className='bg-white w-full p-16 grid grid-cols-1 lg:grid-cols-3 gap-4'>
-        {ListReview.map((item) => (
+        {ListReview.map((item, index) => (
           <DetailReview
-            key={item.id}
+            key={index}
             publicEmail={item.publicEmail}
             email={item.email}
             nickName={item.nickName}
